@@ -11,19 +11,14 @@ WORD_TO_DIGITS_MAPPING = {
 }
 
 
-def find_all_occurrences(main_string, substring):
-    occurrences = [i for i in range(len(main_string)) if main_string.startswith(substring, i)]
-    return occurrences
-
-
 def get_number(line:str) -> int:
     digits = {}
     for word, digit in WORD_TO_DIGITS_MAPPING.items():
-        for word_occurrence_index in find_all_occurrences(line, word):
-            digits[word_occurrence_index] = digit
-
-        for digit_occurrence_index in find_all_occurrences(line, digit):
-            digits[digit_occurrence_index] = digit
+        for i in range(len(line)):
+            if line.startswith(word, i):
+                digits[i] = digit
+            if line.startswith(digit, i):
+                digits[i] = digit
 
     second_digit_index = max(digits.keys())
     try:
