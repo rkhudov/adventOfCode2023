@@ -1,5 +1,3 @@
-from functools import reduce
-
 with open("input.txt") as input_file:
     times = []
     time = 0
